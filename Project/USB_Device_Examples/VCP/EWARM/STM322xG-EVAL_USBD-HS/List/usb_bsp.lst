@@ -1,0 +1,248 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        03/Dec/2019  20:49:39
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\usb_bsp.c
+#    Command line =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\usb_bsp.c
+#        -D USE_STDPERIPH_DRIVER -D STM32F10X_CL -lcN
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\List\
+#        -o
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M3 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench 7.2\arm\INC\c\DLib_Config_Full.h"
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\CMSIS\Device\ST\STM32F10x\Include\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_OTG_Driver\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_Device_Library\Core\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_Device_Library\Class\cdc\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\Common\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\STM3210C_EVAL\
+#        -On --use_c++_inline -I "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 7.2\arm\CMSIS\Include\"
+#    List file    =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\List\usb_bsp.lst
+#    Object file  =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\Obj\usb_bsp.o
+#
+###############################################################################
+
+C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\usb_bsp.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    usb_bsp.c
+      4            * @author  MCD Application Team
+      5            * @version V1.1.0
+      6            * @date    19-March-2012
+      7            * @brief   This file is responsible to offer board support package and is 
+      8            *          configurable by user.
+      9            ******************************************************************************
+     10            * @attention
+     11            *
+     12            * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+     13            *
+     14            * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+     15            * You may not use this file except in compliance with the License.
+     16            * You may obtain a copy of the License at:
+     17            *
+     18            *        http://www.st.com/software_license_agreement_liberty_v2
+     19            *
+     20            * Unless required by applicable law or agreed to in writing, software 
+     21            * distributed under the License is distributed on an "AS IS" BASIS, 
+     22            * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     23            * See the License for the specific language governing permissions and
+     24            * limitations under the License.
+     25            *
+     26            ******************************************************************************
+     27            */ 
+     28          
+     29          /* Includes ------------------------------------------------------------------*/
+     30          #include "usb_bsp.h"
+     31          #include "usbd_conf.h"
+     32          
+     33          /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
+     34          * @{
+     35          */
+     36          
+     37          /** @defgroup USB_BSP
+     38          * @brief This file is responsible to offer board support package
+     39          * @{
+     40          */ 
+     41          
+     42          /** @defgroup USB_BSP_Private_Defines
+     43          * @{
+     44          */ 
+     45          /**
+     46          * @}
+     47          */ 
+     48          
+     49          
+     50          /** @defgroup USB_BSP_Private_TypesDefinitions
+     51          * @{
+     52          */ 
+     53          /**
+     54          * @}
+     55          */ 
+     56          
+     57          
+     58          
+     59          
+     60          
+     61          /** @defgroup USB_BSP_Private_Macros
+     62          * @{
+     63          */ 
+     64          /**
+     65          * @}
+     66          */ 
+     67          
+     68          /** @defgroup USBH_BSP_Private_Variables
+     69          * @{
+     70          */ 
+     71          
+     72          /**
+     73          * @}
+     74          */ 
+     75          
+     76          /** @defgroup USBH_BSP_Private_FunctionPrototypes
+     77          * @{
+     78          */ 
+     79          /**
+     80          * @}
+     81          */ 
+     82          
+     83          /** @defgroup USB_BSP_Private_Functions
+     84          * @{
+     85          */ 
+     86          
+     87          
+     88          /**
+     89          * @brief  USB_OTG_BSP_Init
+     90          *         Initilizes BSP configurations
+     91          * @param  None
+     92          * @retval None
+     93          */
+     94          
+     95          void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev)
+     96          {
+     97          
+     98            RCC_OTGFSCLKConfig(RCC_OTGFSCLKSource_PLLVCO_Div3);
+     99            RCC_AHBPeriphClockCmd(RCC_AHBPeriph_OTG_FS, ENABLE) ;
+    100          
+    101          }
+    102          /**
+    103          * @brief  USB_OTG_BSP_EnableInterrupt
+    104          *         Enabele USB Global interrupt
+    105          * @param  None
+    106          * @retval None
+    107          */
+    108          
+    109          
+    110          
+    111          void USB_OTG_BSP_EnableInterrupt(USB_OTG_CORE_HANDLE *pdev)
+    112          {
+    113            NVIC_InitTypeDef NVIC_InitStructure; 
+    114            
+    115            NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+    116          
+    117            NVIC_InitStructure.NVIC_IRQChannel = OTG_FS_IRQn;  
+    118          
+    119            NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    120            NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
+    121            NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    122            NVIC_Init(&NVIC_InitStructure);  
+    123          }
+    124          /**
+    125          * @brief  USB_OTG_BSP_uDelay
+    126          *         This function provides delay time in micro sec
+    127          * @param  usec : Value of delay required in micro sec
+    128          * @retval None
+    129          */
+    130          void USB_OTG_BSP_uDelay (const uint32_t usec)
+    131          {
+    132            uint32_t count = 0;
+    133            const uint32_t utime = (120 * usec / 7);
+    134            do
+    135            {
+    136              if ( ++count > utime )
+    137              {
+    138                return ;
+    139              }
+    140            }
+    141            while (1);
+    142          }
+    143          
+    144          
+    145          /**
+    146          * @brief  USB_OTG_BSP_mDelay
+    147          *          This function provides delay time in milli sec
+    148          * @param  msec : Value of delay required in milli sec
+    149          * @retval None
+    150          */
+    151          void USB_OTG_BSP_mDelay (const uint32_t msec)
+    152          {
+    153            USB_OTG_BSP_uDelay(msec * 1000);   
+    154          }
+    155          /**
+    156          * @}
+    157          */ 
+    158          
+    159          /**
+    160          * @}
+    161          */ 
+    162          
+    163          /**
+    164          * @}
+    165          */
+    166          
+    167          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      16   USB_OTG_BSP_EnableInterrupt
+        16   -> NVIC_Init
+        16   -> NVIC_PriorityGroupConfig
+       8   USB_OTG_BSP_Init
+         8   -> RCC_AHBPeriphClockCmd
+         8   -> RCC_OTGFSCLKConfig
+       8   USB_OTG_BSP_mDelay
+         8   -> USB_OTG_BSP_uDelay
+       0   USB_OTG_BSP_uDelay
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      46  USB_OTG_BSP_EnableInterrupt
+      22  USB_OTG_BSP_Init
+      18  USB_OTG_BSP_mDelay
+      24  USB_OTG_BSP_uDelay
+
+ 
+ 110 bytes in section .text
+ 
+ 110 bytes of CODE memory
+
+Errors: none
+Warnings: none

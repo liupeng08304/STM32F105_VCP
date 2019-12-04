@@ -1,0 +1,1032 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        03/Dec/2019  17:59:11
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\system_stm32f10x.c
+#    Command line =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\system_stm32f10x.c
+#        -D USE_STDPERIPH_DRIVER -D STM32F10X_CL -lcN
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\List\
+#        -o
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M3 -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench 7.2\arm\INC\c\DLib_Config_Full.h"
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\CMSIS\Device\ST\STM32F10x\Include\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_OTG_Driver\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_Device_Library\Core\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Libraries\STM32_USB_Device_Library\Class\cdc\inc\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\Common\
+#        -I
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\..\..\..\..\Utilities\STM32_EVAL\STM3210C_EVAL\
+#        -On --use_c++_inline -I "C:\Program Files (x86)\IAR Systems\Embedded
+#        Workbench 7.2\arm\CMSIS\Include\"
+#    List file    =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\List\system_stm32f10x.lst
+#    Object file  =  
+#        C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\EWARM\STM322xG-EVAL_USBD-HS\Obj\system_stm32f10x.o
+#
+###############################################################################
+
+C:\Users\Administrator\Documents\prj\STM32VCP\Project\USB_Device_Examples\VCP\src\system_stm32f10x.c
+      1          /**
+      2            ******************************************************************************
+      3            * @file    system_stm32f10x.c
+      4            * @author  MCD Application Team
+      5            * @version V1.1.0
+      6            * @date    19-March-2012
+      7            * @brief   CMSIS Cortex-M3 Device Peripheral Access Layer System Source File.
+      8            *   
+      9            * @note    This file has been modified to support only the Connectivity line
+     10            *          devices (STM32F105/07xx).  
+     11            *   
+     12            * 1.  This file provides two functions and one global variable to be called from 
+     13            *     user application:
+     14            *      - SystemInit(): Setups the system clock (System clock source, PLL Multiplier
+     15            *                      factors, AHB/APBx prescalers and Flash settings). 
+     16            *                      This function is called at startup just after reset and 
+     17            *                      before branch to main program. This call is made inside
+     18            *                      the "startup_stm32f10x_cl.s" file.
+     19            *
+     20            *      - SystemCoreClock variable: Contains the core clock (HCLK), it can be used
+     21            *                                  by the user application to setup the SysTick 
+     22            *                                  timer or configure other parameters.
+     23            *                                     
+     24            *      - SystemCoreClockUpdate(): Updates the variable SystemCoreClock and must
+     25            *                                 be called whenever the core clock is changed
+     26            *                                 during program execution.
+     27            *
+     28            * 2. After each device reset the HSI (8 MHz) is used as system clock source.
+     29            *    Then SystemInit() function is called, in "startup_stm32f10x_cl.s" file, to
+     30            *    configure the system clock before to branch to main program.
+     31            *
+     32            * 3. If the system clock source selected by user fails to startup, the SystemInit()
+     33            *    function will do nothing and HSI still used as system clock source. User can 
+     34            *    add some code to deal with this issue inside the SetSysClock() function.
+     35            *
+     36            * 4. The default value of HSE crystal is set to 25 MHz (for Connectivity line
+     37            *    devices), refer to "HSE_VALUE" define in "stm32f10x.h" file. 
+     38            *    When HSE is used as system clock source, directly or through PLL, and you
+     39            *    are using different crystal you have to adapt the HSE value to your own
+     40            *    configuration.
+     41            *        
+     42            ******************************************************************************
+     43            * @attention
+     44            *
+     45            * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+     46            *
+     47            * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+     48            * You may not use this file except in compliance with the License.
+     49            * You may obtain a copy of the License at:
+     50            *
+     51            *        http://www.st.com/software_license_agreement_liberty_v2
+     52            *
+     53            * Unless required by applicable law or agreed to in writing, software 
+     54            * distributed under the License is distributed on an "AS IS" BASIS, 
+     55            * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     56            * See the License for the specific language governing permissions and
+     57            * limitations under the License.
+     58            *
+     59            ******************************************************************************
+     60            */
+     61          
+     62          /** @addtogroup CMSIS
+     63            * @{
+     64            */
+     65          
+     66          /** @addtogroup stm32f10x_system
+     67            * @{
+     68            */  
+     69            
+     70          /** @addtogroup STM32F10x_System_Private_Includes
+     71            * @{
+     72            */
+     73          
+     74          #include "stm32f10x.h"
+     75          
+     76          /**
+     77            * @}
+     78            */
+     79          
+     80          /** @addtogroup STM32F10x_System_Private_TypesDefinitions
+     81            * @{
+     82            */
+     83          
+     84          /**
+     85            * @}
+     86            */
+     87          
+     88          /** @addtogroup STM32F10x_System_Private_Defines
+     89            * @{
+     90            */
+     91          
+     92          /*!< Uncomment the line corresponding to the desired System clock (SYSCLK)
+     93             frequency (after reset the HSI is used as SYSCLK source)
+     94             
+     95             IMPORTANT NOTE:
+     96             ============== 
+     97             1. After each device reset the HSI is used as System clock source.
+     98          
+     99             2. Please make sure that the selected System clock doesn't exceed your device's
+    100                maximum frequency.
+    101                
+    102             3. If none of the define below is enabled, the HSI is used as System clock
+    103              source.
+    104          
+    105             4. The System clock configuration functions provided within this file assume that:
+    106                  - For Connectivity line devices an external 25MHz crystal is used to drive
+    107                    the System clock.
+    108               If you are using different crystal you have to adapt those functions accordingly.
+    109              */
+    110              
+    111          //#define SYSCLK_FREQ_HSE    HSE_VALUE
+    112          //#define SYSCLK_FREQ_24MHz  24000000
+    113          //#define SYSCLK_FREQ_36MHz  36000000 
+    114          //#define SYSCLK_FREQ_48MHz  48000000 
+    115          //#define SYSCLK_FREQ_56MHz  56000000 
+    116          #define SYSCLK_FREQ_72MHz  72000000
+    117          
+    118          
+    119          /*!< Uncomment the following line if you need to relocate your vector Table in
+    120               Internal SRAM. */ 
+    121          /* #define VECT_TAB_SRAM */
+    122          #define VECT_TAB_OFFSET  0x0 /*!< Vector Table base offset field. 
+    123                                            This value must be a multiple of 0x200. */
+    124          
+    125          
+    126          /**
+    127            * @}
+    128            */
+    129          
+    130          /** @addtogroup STM32F10x_System_Private_Macros
+    131            * @{
+    132            */
+    133          
+    134          /**
+    135            * @}
+    136            */
+    137          
+    138          /** @addtogroup STM32F10x_System_Private_Variables
+    139            * @{
+    140            */
+    141          
+    142          /*******************************************************************************
+    143          *  Clock Definitions
+    144          *******************************************************************************/
+    145          #ifdef SYSCLK_FREQ_HSE
+    146            uint32_t SystemCoreClock         = SYSCLK_FREQ_HSE;        /*!< System Clock Frequency (Core Clock) */
+    147          #elif defined SYSCLK_FREQ_24MHz
+    148            uint32_t SystemCoreClock         = SYSCLK_FREQ_24MHz;        /*!< System Clock Frequency (Core Clock) */
+    149          #elif defined SYSCLK_FREQ_36MHz
+    150            uint32_t SystemCoreClock         = SYSCLK_FREQ_36MHz;        /*!< System Clock Frequency (Core Clock) */
+    151          #elif defined SYSCLK_FREQ_48MHz
+    152            uint32_t SystemCoreClock         = SYSCLK_FREQ_48MHz;        /*!< System Clock Frequency (Core Clock) */
+    153          #elif defined SYSCLK_FREQ_56MHz
+    154            uint32_t SystemCoreClock         = SYSCLK_FREQ_56MHz;        /*!< System Clock Frequency (Core Clock) */
+    155          #elif defined SYSCLK_FREQ_72MHz
+    156            uint32_t SystemCoreClock         = SYSCLK_FREQ_72MHz;        /*!< System Clock Frequency (Core Clock) */
+    157          #else /*!< HSI Selected as System Clock source */
+    158            uint32_t SystemCoreClock         = HSI_VALUE;        /*!< System Clock Frequency (Core Clock) */
+    159          #endif
+    160          
+    161          __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+    162          /**
+    163            * @}
+    164            */
+    165          
+    166          /** @addtogroup STM32F10x_System_Private_FunctionPrototypes
+    167            * @{
+    168            */
+    169          
+    170          static void SetSysClock(void);
+    171          
+    172          #ifdef SYSCLK_FREQ_HSE
+    173            static void SetSysClockToHSE(void);
+    174          #elif defined SYSCLK_FREQ_24MHz
+    175            static void SetSysClockTo24(void);
+    176          #elif defined SYSCLK_FREQ_36MHz
+    177            static void SetSysClockTo36(void);
+    178          #elif defined SYSCLK_FREQ_48MHz
+    179            static void SetSysClockTo48(void);
+    180          #elif defined SYSCLK_FREQ_56MHz
+    181            static void SetSysClockTo56(void);  
+    182          #elif defined SYSCLK_FREQ_72MHz
+    183            static void SetSysClockTo72(void);
+    184          #endif
+    185          
+    186          /**
+    187            * @}
+    188            */
+    189          
+    190          /** @addtogroup STM32F10x_System_Private_Functions
+    191            * @{
+    192            */
+    193          
+    194          /**
+    195            * @brief  Setup the microcontroller system
+    196            *         Initialize the Embedded Flash Interface, the PLL and update the 
+    197            *         SystemCoreClock variable.
+    198            * @note   This function should be used only after reset.
+    199            * @param  None
+    200            * @retval None
+    201            */
+    202          void SystemInit (void)
+    203          {
+    204            /* Reset the RCC clock configuration to the default reset state(for debug purpose) */
+    205            /* Set HSION bit */
+    206            RCC->CR |= (uint32_t)0x00000001;
+    207          
+    208            /* Reset SW, HPRE, PPRE1, PPRE2, ADCPRE and MCO bits */
+    209            RCC->CFGR &= (uint32_t)0xF0FF0000; 
+    210            
+    211            /* Reset HSEON, CSSON and PLLON bits */
+    212            RCC->CR &= (uint32_t)0xFEF6FFFF;
+    213          
+    214            /* Reset HSEBYP bit */
+    215            RCC->CR &= (uint32_t)0xFFFBFFFF;
+    216          
+    217            /* Reset PLLSRC, PLLXTPRE, PLLMUL and USBPRE/OTGFSPRE bits */
+    218            RCC->CFGR &= (uint32_t)0xFF80FFFF;
+    219          
+    220            /* Reset PLL2ON and PLL3ON bits */
+    221            RCC->CR &= (uint32_t)0xEBFFFFFF;
+    222          
+    223            /* Disable all interrupts and clear pending bits  */
+    224            RCC->CIR = 0x00FF0000;
+    225          
+    226            /* Reset CFGR2 register */
+    227            RCC->CFGR2 = 0x00000000;
+    228          
+    229            /* Disable all interrupts and clear pending bits  */
+    230            RCC->CIR = 0x009F0000;
+    231          
+    232            /* Configure the System clock frequency, HCLK, PCLK2 and PCLK1 prescalers */
+    233            /* Configure the Flash Latency cycles and enable prefetch buffer */
+    234            SetSysClock();
+    235          
+    236          #ifdef VECT_TAB_SRAM
+    237            SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM. */
+    238          #else
+    239            SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH. */
+    240          #endif 
+    241          }
+    242          
+    243          /**
+    244            * @brief  Update SystemCoreClock variable according to Clock Register Values.
+    245            *         The SystemCoreClock variable contains the core clock (HCLK), it can
+    246            *         be used by the user application to setup the SysTick timer or configure
+    247            *         other parameters.
+    248            *           
+    249            * @note   Each time the core clock (HCLK) changes, this function must be called
+    250            *         to update SystemCoreClock variable value. Otherwise, any configuration
+    251            *         based on this variable will be incorrect.         
+    252            *     
+    253            * @note   - The system frequency computed by this function is not the real 
+    254            *           frequency in the chip. It is calculated based on the predefined 
+    255            *           constant and the selected clock source:
+    256            *             
+    257            *           - If SYSCLK source is HSI, SystemCoreClock will contain the HSI_VALUE(*)
+    258            *                                              
+    259            *           - If SYSCLK source is HSE, SystemCoreClock will contain the HSE_VALUE(**)
+    260            *                          
+    261            *           - If SYSCLK source is PLL, SystemCoreClock will contain the HSE_VALUE(**) 
+    262            *             or HSI_VALUE(*) multiplied by the PLL factors.
+    263            *         
+    264            *         (*) HSI_VALUE is a constant defined in stm32f1xx.h file (default value
+    265            *             8 MHz) but the real value may vary depending on the variations
+    266            *             in voltage and temperature.   
+    267            *    
+    268            *         (**) HSE_VALUE is a constant defined in stm32f1xx.h file (default value
+    269            *              25 MHz for the Connectivity line devices), user has to ensure
+    270            *              that HSE_VALUE is same as the real frequency of the crystal used.
+    271            *              Otherwise, this function may have wrong result.
+    272            *                
+    273            *         - The result of this function could be not correct when using fractional
+    274            *           value for HSE crystal.
+    275            * @param  None
+    276            * @retval None
+    277            */
+    278          void SystemCoreClockUpdate (void)
+    279          {
+    280            uint32_t tmp = 0, pllmull = 0, pllsource = 0;
+    281          
+    282            uint32_t prediv1source = 0, prediv1factor = 0, prediv2factor = 0, pll2mull = 0;
+    283            
+    284            /* Get SYSCLK source -------------------------------------------------------*/
+    285            tmp = RCC->CFGR & RCC_CFGR_SWS;
+    286            
+    287            switch (tmp)
+    288            {
+    289              case 0x00:  /* HSI used as system clock */
+    290                SystemCoreClock = HSI_VALUE;
+    291                break;
+    292              case 0x04:  /* HSE used as system clock */
+    293                SystemCoreClock = HSE_VALUE;
+    294                break;
+    295              case 0x08:  /* PLL used as system clock */
+    296          
+    297                /* Get PLL clock source and multiplication factor ----------------------*/
+    298                pllmull = RCC->CFGR & RCC_CFGR_PLLMULL;
+    299                pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
+    300                
+    301                pllmull = pllmull >> 18;
+    302                
+    303                if (pllmull != 0x0D)
+    304                {
+    305                   pllmull += 2;
+    306                }
+    307                else
+    308                { /* PLL multiplication factor = PLL input clock * 6.5 */
+    309                  pllmull = 13 / 2; 
+    310                }
+    311                      
+    312                if (pllsource == 0x00)
+    313                {
+    314                  /* HSI oscillator clock divided by 2 selected as PLL clock entry */
+    315                  SystemCoreClock = (HSI_VALUE >> 1) * pllmull;
+    316                }
+    317                else
+    318                {/* PREDIV1 selected as PLL clock entry */
+    319                  
+    320                  /* Get PREDIV1 clock source and division factor */
+    321                  prediv1source = RCC->CFGR2 & RCC_CFGR2_PREDIV1SRC;
+    322                  prediv1factor = (RCC->CFGR2 & RCC_CFGR2_PREDIV1) + 1;
+    323                  
+    324                  if (prediv1source == 0)
+    325                  { 
+    326                    /* HSE oscillator clock selected as PREDIV1 clock entry */
+    327                    SystemCoreClock = (HSE_VALUE / prediv1factor) * pllmull;          
+    328                  }
+    329                  else
+    330                  {/* PLL2 clock selected as PREDIV1 clock entry */
+    331                    
+    332                    /* Get PREDIV2 division factor and PLL2 multiplication factor */
+    333                    prediv2factor = ((RCC->CFGR2 & RCC_CFGR2_PREDIV2) >> 4) + 1;
+    334                    pll2mull = ((RCC->CFGR2 & RCC_CFGR2_PLL2MUL) >> 8 ) + 2; 
+    335                    SystemCoreClock = (((HSE_VALUE / prediv2factor) * pll2mull) / prediv1factor) * pllmull;                         
+    336                  }
+    337                }
+    338                break;
+    339          
+    340              default:
+    341                SystemCoreClock = HSI_VALUE;
+    342                break;
+    343            }
+    344            
+    345            /* Compute HCLK clock frequency ----------------*/
+    346            /* Get HCLK prescaler */
+    347            tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
+    348            /* HCLK clock frequency */
+    349            SystemCoreClock >>= tmp;  
+    350          }
+    351          
+    352          /**
+    353            * @brief  Configures the System clock frequency, HCLK, PCLK2 and PCLK1 prescalers.
+    354            * @param  None
+    355            * @retval None
+    356            */
+    357          static void SetSysClock(void)
+    358          {
+    359          #ifdef SYSCLK_FREQ_HSE
+    360            SetSysClockToHSE();
+    361          #elif defined SYSCLK_FREQ_24MHz
+    362            SetSysClockTo24();
+    363          #elif defined SYSCLK_FREQ_36MHz
+    364            SetSysClockTo36();
+    365          #elif defined SYSCLK_FREQ_48MHz
+    366            SetSysClockTo48();
+    367          #elif defined SYSCLK_FREQ_56MHz
+    368            SetSysClockTo56();  
+    369          #elif defined SYSCLK_FREQ_72MHz
+    370            SetSysClockTo72();
+    371          #endif
+    372           
+    373           /* If none of the define above is enabled, the HSI is used as System clock
+    374              source (default after reset) */ 
+    375          }
+    376          
+    377          #ifdef SYSCLK_FREQ_HSE
+    378          /**
+    379            * @brief  Selects HSE as System clock source and configure HCLK, PCLK2
+    380            *          and PCLK1 prescalers.
+    381            * @note   This function should be used only after reset.
+    382            * @param  None
+    383            * @retval None
+    384            */
+    385          static void SetSysClockToHSE(void)
+    386          {
+    387            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    388            
+    389            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
+    390            /* Enable HSE */    
+    391            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    392           
+    393            /* Wait till HSE is ready and if Time out is reached exit */
+    394            do
+    395            {
+    396              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    397              StartUpCounter++;  
+    398            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    399          
+    400            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    401            {
+    402              HSEStatus = (uint32_t)0x01;
+    403            }
+    404            else
+    405            {
+    406              HSEStatus = (uint32_t)0x00;
+    407            }  
+    408          
+    409            if (HSEStatus == (uint32_t)0x01)
+    410            {
+    411          
+    412              /* Enable Prefetch Buffer */
+    413              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    414          
+    415              /* Flash 0 wait state */
+    416              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    417          
+    418              if (HSE_VALUE <= 24000000)
+    419             {
+    420                FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_0;
+    421             }
+    422             else
+    423             {
+    424                FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_1;
+    425             }
+    426          
+    427              /* HCLK = SYSCLK */
+    428              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    429                
+    430              /* PCLK2 = HCLK */
+    431              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    432              
+    433              /* PCLK1 = HCLK */
+    434              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV1;
+    435              
+    436              /* Select HSE as system clock source */
+    437              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    438              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_HSE;    
+    439          
+    440              /* Wait till HSE is used as system clock source */
+    441              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x04)
+    442              {
+    443              }
+    444            }
+    445            else
+    446            { /* If HSE fails to start-up, the application will have wrong clock 
+    447                   configuration. User can add here some code to deal with this error */
+    448            }  
+    449          }
+    450          
+    451          #elif defined SYSCLK_FREQ_24MHz
+    452          /**
+    453            * @brief  Sets System clock frequency to 24MHz and configure HCLK, PCLK2 
+    454            *          and PCLK1 prescalers.
+    455            * @note   This function should be used only after reset.
+    456            * @param  None
+    457            * @retval None
+    458            */
+    459          static void SetSysClockTo24(void)
+    460          {
+    461            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    462            
+    463            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
+    464            /* Enable HSE */    
+    465            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    466           
+    467            /* Wait till HSE is ready and if Time out is reached exit */
+    468            do
+    469            {
+    470              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    471              StartUpCounter++;  
+    472            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    473          
+    474            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    475            {
+    476              HSEStatus = (uint32_t)0x01;
+    477            }
+    478            else
+    479            {
+    480              HSEStatus = (uint32_t)0x00;
+    481            }  
+    482          
+    483            if (HSEStatus == (uint32_t)0x01)
+    484            {
+    485              /* Enable Prefetch Buffer */
+    486              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    487          
+    488              /* Flash 0 wait state */
+    489              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    490              FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_0;    
+    491           
+    492              /* HCLK = SYSCLK */
+    493              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    494                
+    495              /* PCLK2 = HCLK */
+    496              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    497              
+    498              /* PCLK1 = HCLK */
+    499              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV1;
+    500              
+    501              /* Configure PLLs ------------------------------------------------------*/
+    502              /* PLL configuration: PLLCLK = PREDIV1 * 6 = 24 MHz */ 
+    503              RCC->CFGR &= (uint32_t)~(RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL);
+    504              RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLSRC_PREDIV1 | 
+    505                                      RCC_CFGR_PLLMULL6); 
+    506          
+    507              /* PLL2 configuration: PLL2CLK = (HSE / 5) * 8 = 40 MHz */
+    508              /* PREDIV1 configuration: PREDIV1CLK = PLL2 / 10 = 4 MHz */       
+    509              RCC->CFGR2 &= (uint32_t)~(RCC_CFGR2_PREDIV2 | RCC_CFGR2_PLL2MUL |
+    510                                        RCC_CFGR2_PREDIV1 | RCC_CFGR2_PREDIV1SRC);
+    511              RCC->CFGR2 |= (uint32_t)(RCC_CFGR2_PREDIV2_DIV5 | RCC_CFGR2_PLL2MUL8 |
+    512                                       RCC_CFGR2_PREDIV1SRC_PLL2 | RCC_CFGR2_PREDIV1_DIV10);
+    513            
+    514              /* Enable PLL2 */
+    515              RCC->CR |= RCC_CR_PLL2ON;
+    516              /* Wait till PLL2 is ready */
+    517              while((RCC->CR & RCC_CR_PLL2RDY) == 0)
+    518              {
+    519              }   
+    520          
+    521              /* Enable PLL */
+    522              RCC->CR |= RCC_CR_PLLON;
+    523          
+    524              /* Wait till PLL is ready */
+    525              while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    526              {
+    527              }
+    528          
+    529              /* Select PLL as system clock source */
+    530              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    531              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+    532          
+    533              /* Wait till PLL is used as system clock source */
+    534              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
+    535              {
+    536              }
+    537            }
+    538            else
+    539            { /* If HSE fails to start-up, the application will have wrong clock 
+    540                   configuration. User can add here some code to deal with this error */
+    541            } 
+    542          }
+    543          
+    544          #elif defined SYSCLK_FREQ_36MHz
+    545          /**
+    546            * @brief  Sets System clock frequency to 36MHz and configure HCLK, PCLK2 
+    547            *          and PCLK1 prescalers. 
+    548            * @note   This function should be used only after reset.
+    549            * @param  None
+    550            * @retval None
+    551            */
+    552          static void SetSysClockTo36(void)
+    553          {
+    554            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    555            
+    556            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
+    557            /* Enable HSE */    
+    558            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    559           
+    560            /* Wait till HSE is ready and if Time out is reached exit */
+    561            do
+    562            {
+    563              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    564              StartUpCounter++;  
+    565            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    566          
+    567            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    568            {
+    569              HSEStatus = (uint32_t)0x01;
+    570            }
+    571            else
+    572            {
+    573              HSEStatus = (uint32_t)0x00;
+    574            }  
+    575          
+    576            if (HSEStatus == (uint32_t)0x01)
+    577            {
+    578              /* Enable Prefetch Buffer */
+    579              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    580          
+    581              /* Flash 1 wait state */
+    582              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    583              FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_1;    
+    584           
+    585              /* HCLK = SYSCLK */
+    586              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    587                
+    588              /* PCLK2 = HCLK */
+    589              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    590              
+    591              /* PCLK1 = HCLK */
+    592              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV1;
+    593              
+    594              /* Configure PLLs ------------------------------------------------------*/
+    595              
+    596              /* PLL configuration: PLLCLK = PREDIV1 * 9 = 36 MHz */ 
+    597              RCC->CFGR &= (uint32_t)~(RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL);
+    598              RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLSRC_PREDIV1 | 
+    599                                      RCC_CFGR_PLLMULL9); 
+    600          
+    601           /*!< PLL2 configuration: PLL2CLK = (HSE / 5) * 8 = 40 MHz */
+    602              /* PREDIV1 configuration: PREDIV1CLK = PLL2 / 10 = 4 MHz */
+    603                  
+    604              RCC->CFGR2 &= (uint32_t)~(RCC_CFGR2_PREDIV2 | RCC_CFGR2_PLL2MUL |
+    605                                        RCC_CFGR2_PREDIV1 | RCC_CFGR2_PREDIV1SRC);
+    606              RCC->CFGR2 |= (uint32_t)(RCC_CFGR2_PREDIV2_DIV5 | RCC_CFGR2_PLL2MUL8 |
+    607                                       RCC_CFGR2_PREDIV1SRC_PLL2 | RCC_CFGR2_PREDIV1_DIV10);
+    608            
+    609              /* Enable PLL2 */
+    610              RCC->CR |= RCC_CR_PLL2ON;
+    611              /* Wait till PLL2 is ready */
+    612              while((RCC->CR & RCC_CR_PLL2RDY) == 0)
+    613              {
+    614              }
+    615          
+    616              /* Enable PLL */
+    617              RCC->CR |= RCC_CR_PLLON;
+    618          
+    619              /* Wait till PLL is ready */
+    620              while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    621              {
+    622              }
+    623          
+    624              /* Select PLL as system clock source */
+    625              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    626              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+    627          
+    628              /* Wait till PLL is used as system clock source */
+    629              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
+    630              {
+    631              }
+    632            }
+    633            else
+    634            { /* If HSE fails to start-up, the application will have wrong clock 
+    635                   configuration. User can add here some code to deal with this error */
+    636            } 
+    637          }
+    638          
+    639          #elif defined SYSCLK_FREQ_48MHz
+    640          /**
+    641            * @brief  Sets System clock frequency to 48MHz and configure HCLK, PCLK2 
+    642            *          and PCLK1 prescalers. 
+    643            * @note   This function should be used only after reset.
+    644            * @param  None
+    645            * @retval None
+    646            */
+    647          static void SetSysClockTo48(void)
+    648          {
+    649            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    650            
+    651            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
+    652            /* Enable HSE */    
+    653            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    654           
+    655            /* Wait till HSE is ready and if Time out is reached exit */
+    656            do
+    657            {
+    658              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    659              StartUpCounter++;  
+    660            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    661          
+    662            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    663            {
+    664              HSEStatus = (uint32_t)0x01;
+    665            }
+    666            else
+    667            {
+    668              HSEStatus = (uint32_t)0x00;
+    669            }  
+    670          
+    671            if (HSEStatus == (uint32_t)0x01)
+    672            {
+    673              /* Enable Prefetch Buffer */
+    674              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    675          
+    676              /* Flash 1 wait state */
+    677              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    678              FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_1;    
+    679           
+    680              /* HCLK = SYSCLK */
+    681              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    682                
+    683              /* PCLK2 = HCLK */
+    684              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    685              
+    686              /* PCLK1 = HCLK */
+    687              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
+    688              
+    689              /* Configure PLLs ------------------------------------------------------*/
+    690              /* PLL2 configuration: PLL2CLK = (HSE / 5) * 8 = 40 MHz */
+    691              /* PREDIV1 configuration: PREDIV1CLK = PLL2 / 5 = 8 MHz */
+    692                  
+    693              RCC->CFGR2 &= (uint32_t)~(RCC_CFGR2_PREDIV2 | RCC_CFGR2_PLL2MUL |
+    694                                        RCC_CFGR2_PREDIV1 | RCC_CFGR2_PREDIV1SRC);
+    695              RCC->CFGR2 |= (uint32_t)(RCC_CFGR2_PREDIV2_DIV5 | RCC_CFGR2_PLL2MUL8 |
+    696                                       RCC_CFGR2_PREDIV1SRC_PLL2 | RCC_CFGR2_PREDIV1_DIV5);
+    697            
+    698              /* Enable PLL2 */
+    699              RCC->CR |= RCC_CR_PLL2ON;
+    700              /* Wait till PLL2 is ready */
+    701              while((RCC->CR & RCC_CR_PLL2RDY) == 0)
+    702              {
+    703              }
+    704              
+    705             
+    706              /* PLL configuration: PLLCLK = PREDIV1 * 6 = 48 MHz */ 
+    707              RCC->CFGR &= (uint32_t)~(RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL);
+    708              RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLSRC_PREDIV1 | 
+    709                                      RCC_CFGR_PLLMULL6); 
+    710          
+    711              /* Enable PLL */
+    712              RCC->CR |= RCC_CR_PLLON;
+    713          
+    714              /* Wait till PLL is ready */
+    715              while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    716              {
+    717              }
+    718          
+    719              /* Select PLL as system clock source */
+    720              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    721              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+    722          
+    723              /* Wait till PLL is used as system clock source */
+    724              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
+    725              {
+    726              }
+    727            }
+    728            else
+    729            { /* If HSE fails to start-up, the application will have wrong clock 
+    730                   configuration. User can add here some code to deal with this error */
+    731            } 
+    732          }
+    733          
+    734          #elif defined SYSCLK_FREQ_56MHz
+    735          /**
+    736            * @brief  Sets System clock frequency to 56MHz and configure HCLK, PCLK2 
+    737            *          and PCLK1 prescalers. 
+    738            * @note   This function should be used only after reset.
+    739            * @param  None
+    740            * @retval None
+    741            */
+    742          static void SetSysClockTo56(void)
+    743          {
+    744            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    745            
+    746            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/   
+    747            /* Enable HSE */    
+    748            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    749           
+    750            /* Wait till HSE is ready and if Time out is reached exit */
+    751            do
+    752            {
+    753              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    754              StartUpCounter++;  
+    755            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    756          
+    757            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    758            {
+    759              HSEStatus = (uint32_t)0x01;
+    760            }
+    761            else
+    762            {
+    763              HSEStatus = (uint32_t)0x00;
+    764            }  
+    765          
+    766            if (HSEStatus == (uint32_t)0x01)
+    767            {
+    768              /* Enable Prefetch Buffer */
+    769              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    770          
+    771              /* Flash 2 wait state */
+    772              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    773              FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_2;    
+    774           
+    775              /* HCLK = SYSCLK */
+    776              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    777                
+    778              /* PCLK2 = HCLK */
+    779              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    780              
+    781              /* PCLK1 = HCLK */
+    782              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
+    783          
+    784              /* Configure PLLs ------------------------------------------------------*/
+    785              /* PLL2 configuration: PLL2CLK = (HSE / 5) * 8 = 40 MHz */
+    786              /* PREDIV1 configuration: PREDIV1CLK = PLL2 / 5 = 8 MHz */
+    787                  
+    788              RCC->CFGR2 &= (uint32_t)~(RCC_CFGR2_PREDIV2 | RCC_CFGR2_PLL2MUL |
+    789                                        RCC_CFGR2_PREDIV1 | RCC_CFGR2_PREDIV1SRC);
+    790              RCC->CFGR2 |= (uint32_t)(RCC_CFGR2_PREDIV2_DIV5 | RCC_CFGR2_PLL2MUL8 |
+    791                                       RCC_CFGR2_PREDIV1SRC_PLL2 | RCC_CFGR2_PREDIV1_DIV5);
+    792            
+    793              /* Enable PLL2 */
+    794              RCC->CR |= RCC_CR_PLL2ON;
+    795              /* Wait till PLL2 is ready */
+    796              while((RCC->CR & RCC_CR_PLL2RDY) == 0)
+    797              {
+    798              }
+    799              
+    800             
+    801              /* PLL configuration: PLLCLK = PREDIV1 * 7 = 56 MHz */ 
+    802              RCC->CFGR &= (uint32_t)~(RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL);
+    803              RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLSRC_PREDIV1 | 
+    804                                      RCC_CFGR_PLLMULL7); 
+    805          
+    806              /* Enable PLL */
+    807              RCC->CR |= RCC_CR_PLLON;
+    808          
+    809              /* Wait till PLL is ready */
+    810              while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    811              {
+    812              }
+    813          
+    814              /* Select PLL as system clock source */
+    815              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    816              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+    817          
+    818              /* Wait till PLL is used as system clock source */
+    819              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
+    820              {
+    821              }
+    822            }
+    823            else
+    824            { /* If HSE fails to start-up, the application will have wrong clock 
+    825                   configuration. User can add here some code to deal with this error */
+    826            } 
+    827          }
+    828          
+    829          #elif defined SYSCLK_FREQ_72MHz
+    830          /**
+    831            * @brief  Sets System clock frequency to 72MHz and configure HCLK, PCLK2 
+    832            *          and PCLK1 prescalers. 
+    833            * @note   This function should be used only after reset.
+    834            * @param  None
+    835            * @retval None
+    836            */
+    837          static void SetSysClockTo72(void)
+    838          {
+    839            __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+    840            
+    841            /* SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
+    842            /* Enable HSE */    
+    843            RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    844           
+    845            /* Wait till HSE is ready and if Time out is reached exit */
+    846            do
+    847            {
+    848              HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    849              StartUpCounter++;  
+    850            } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+    851          
+    852            if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+    853            {
+    854              HSEStatus = (uint32_t)0x01;
+    855            }
+    856            else
+    857            {
+    858              HSEStatus = (uint32_t)0x00;
+    859            }  
+    860          
+    861            if (HSEStatus == (uint32_t)0x01)
+    862            {
+    863              /* Enable Prefetch Buffer */
+    864              FLASH->ACR |= FLASH_ACR_PRFTBE;
+    865          
+    866              /* Flash 2 wait state */
+    867              FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    868              FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_2;    
+    869          
+    870           
+    871              /* HCLK = SYSCLK */
+    872              RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+    873                
+    874              /* PCLK2 = HCLK */
+    875              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    876              
+    877              /* PCLK1 = HCLK */
+    878              RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
+    879          
+    880              /* Configure PLLs ------------------------------------------------------*/
+    881              /* PLL2 configuration: PLL2CLK = (HSE / 3) * 10 = 40 MHz */
+    882              /* PREDIV1 configuration: PREDIV1CLK = PLL2 / 5 = 8 MHz */
+    883                  
+    884              RCC->CFGR2 &= (uint32_t)~(RCC_CFGR2_PREDIV2 | RCC_CFGR2_PLL2MUL |
+    885                                        RCC_CFGR2_PREDIV1 | RCC_CFGR2_PREDIV1SRC);
+    886              RCC->CFGR2 |= (uint32_t)(RCC_CFGR2_PREDIV2_DIV3 | RCC_CFGR2_PLL2MUL10 |
+    887                                       RCC_CFGR2_PREDIV1SRC_PLL2 | RCC_CFGR2_PREDIV1_DIV5);
+    888            
+    889              /* Enable PLL2 */
+    890              RCC->CR |= RCC_CR_PLL2ON;
+    891              /* Wait till PLL2 is ready */
+    892              while((RCC->CR & RCC_CR_PLL2RDY) == 0)
+    893              {
+    894              }
+    895              
+    896             
+    897              /* PLL configuration: PLLCLK = PREDIV1 * 9 = 72 MHz */ 
+    898              RCC->CFGR &= (uint32_t)~(RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL);
+    899              RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLXTPRE_PREDIV1 | RCC_CFGR_PLLSRC_PREDIV1 | 
+    900                                      RCC_CFGR_PLLMULL9); 
+    901              /* Enable PLL */
+    902              RCC->CR |= RCC_CR_PLLON;
+    903          
+    904              /* Wait till PLL is ready */
+    905              while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    906              {
+    907              }
+    908              
+    909              /* Select PLL as system clock source */
+    910              RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    911              RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+    912          
+    913              /* Wait till PLL is used as system clock source */
+    914              while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
+    915              {
+    916              }
+    917            }
+    918            else
+    919            { /* If HSE fails to start-up, the application will have wrong clock 
+    920                   configuration. User can add here some code to deal with this error */
+    921            }
+    922          }
+    923          #endif
+    924          
+    925          /**
+    926            * @}
+    927            */
+    928          
+    929          /**
+    930            * @}
+    931            */
+    932            
+    933          /**
+    934            * @}
+    935            */    
+    936          /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   SetSysClock
+         8   -> SetSysClockTo72
+       8   SetSysClockTo72
+      16   SystemCoreClockUpdate
+       8   SystemInit
+         8   -> SetSysClock
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_10
+       4  ??DataTable2_11
+       4  ??DataTable2_12
+       4  ??DataTable2_13
+       4  ??DataTable2_2
+       4  ??DataTable2_3
+       4  ??DataTable2_4
+       4  ??DataTable2_5
+       4  ??DataTable2_6
+       4  ??DataTable2_7
+       4  ??DataTable2_8
+       4  ??DataTable2_9
+      16  AHBPrescTable
+       8  SetSysClock
+     272  SetSysClockTo72
+       4  SystemCoreClock
+     260  SystemCoreClockUpdate
+     110  SystemInit
+
+ 
+  20 bytes in section .data
+ 706 bytes in section .text
+ 
+ 706 bytes of CODE memory
+  20 bytes of DATA memory
+
+Errors: none
+Warnings: none
